@@ -12,7 +12,7 @@ public class AVLTree {
             this.value = value;
         }
     }
-
+    private int f;
     private AvlNode root;
     public void insert(String value){
       root= insert(root, value);
@@ -35,7 +35,11 @@ public class AVLTree {
     //////////////////////////////FOR Delete////////////////////////////
     
      public void delete(String value){
+       f=0;
        root= delete(root, value);
+       if(f==0){
+           System.out.println("ERROR!! \""+value+"\" not Found!!");
+       }
     }
     private AvlNode delete(AvlNode root,String value){
         if(root ==null)
@@ -46,7 +50,7 @@ public class AVLTree {
            root.left= delete(root.left,value);
         //the node to be deleted found
         else{
-
+            f=1;
             if(root.right==null || root.left==null){
                 AvlNode temp=null;
                 //1 -> if node has only on child
@@ -156,7 +160,8 @@ public class AVLTree {
     private int height(AvlNode root){
         return (root==null) ? -1 : root.height;
     }
-    public boolean search(String value){
+
+    public String search(String value){
         var current=root;
         while(current!=null){
             if(value.compareToIgnoreCase(current.value)>0)
@@ -164,9 +169,9 @@ public class AVLTree {
             else if(value.compareToIgnoreCase(current.value)<0)
                 current=current.left;
             else
-                return true;
+                return "YES";
         }
-        return false;
+        return "NO";
     }
 
     //printing
@@ -197,7 +202,7 @@ public class AVLTree {
         try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
             String line;
             while ((line=br.readLine()) != null){
-                if(search(line)==true){
+                if(search(line)=="YES"){
                     System.out.println("YES ----> " + line.toLowerCase());
                 }else{
                     System.out.println("NO, Word Not Found!!");
@@ -209,22 +214,18 @@ public class AVLTree {
             System.out.println(e.getMessage());
         }
     }
-    /*public void BatchDelete(String file){
-        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+    public void batchDelete(String file){
+        try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
             String line;
             while ((line=br.readLine()) != null){
-                if(search(line)==true){
-                    System.out.println("YES ----> " + line.toLowerCase());
-                }else{
-                    System.out.println("NO, Word Not Found!!");
-                }
+                delete(line);
 
             }
         } catch (Exception e) {
             System.out.println("Can not read the file");
             System.out.println(e.getMessage());
         }
-    }*/
+    }
    /*  10  root
            20 new root
         15      30
