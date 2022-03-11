@@ -32,6 +32,7 @@ public class AVLTree {
 
        return balance(root);
     }
+    
 
     private AvlNode balance(AvlNode root){
         //leftheavy
@@ -114,7 +115,7 @@ public class AVLTree {
     }
     private void traversePreOrder(AvlNode root){
         if(root!=null) {
-            System.out.println(root.value);
+            System.out.print(root.value + " ");
             traversePreOrder(root.left);
             traversePreOrder(root.right);
         }
