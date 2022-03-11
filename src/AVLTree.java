@@ -14,11 +14,60 @@ public class AVLTree {
     }
     private int f,flag;
     private AvlNode root;
+
+    ///////////////////////FILE READER/////////////////////////////////////////////////
+
+    public void load(String file){
+        try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
+            String line;
+            while ((line=br.readLine()) != null){
+                insert(line);
+            }
+        } catch (Exception e) {
+            System.out.print("\nCan not read the file");
+            System.out.println(e.getMessage());
+        }
+    }
+    public void lookUp(String file){
+        try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
+            String line;
+            int c=0;
+            while ((line=br.readLine()) != null){
+                if(search(line)=="YES"){
+                    c++;
+                    System.out.print(" ----> " + line.toLowerCase());
+                }else{
+                    System.out.print(", Word Not Found!!");
+                }
+
+            }
+            System.out.print("\n"+c+" Words Found!!");
+        } catch (Exception e) {
+            System.out.print("\nCan not read the file");
+            System.out.println(e.getMessage());
+        }
+    }
+    public void batchDelete(String file){
+        try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
+            String line;
+            while ((line=br.readLine()) != null){
+                delete(line);
+
+            }
+        } catch (Exception e) {
+            System.out.print("\nCan not read the file");
+            System.out.print(e.getMessage());
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+
+
     public void insert(String value){
         flag=0;
         root= insert(root, value);
         if(flag==0){
-            System.out.println("ERROR: \""+value.toLowerCase()+"\" already in the dictionary!");
+            System.out.print("\nERROR: \""+value.toLowerCase()+"\" already in the dictionary!");
         }
     }
 
@@ -44,7 +93,7 @@ public class AVLTree {
        f=0;
        root= delete(root, value);
        if(f==0){
-           System.out.println("ERROR!! \""+value+"\" not Found!!");
+           System.out.print("\nERROR!! \""+value+"\" not Found!!");
        }
     }
     private AvlNode delete(AvlNode root,String value){
@@ -159,8 +208,9 @@ public class AVLTree {
         return height(root.left)-height(root.right);
     }
 
-    public int height(){
-         return height(root);
+    public void height(){
+
+         System.out.print("\nThe AVL Tree's Height is "+ height(root));
     }
 
     private int height(AvlNode root){
@@ -174,18 +224,22 @@ public class AVLTree {
                 current=current.right;
             else if(value.compareToIgnoreCase(current.value)<0)
                 current=current.left;
-            else
+            else {
+                System.out.print("\nYES");
                 return "YES";
+            }
         }
+        System.out.print("\nNO");
         return "NO";
     }
 
     //printing
     public void traversePreOrder(){
-
+        System.out.print("\n");
          traversePreOrder(root);
     }
     private void traversePreOrder(AvlNode root){
+
         if(root!=null) {
             System.out.print(root.value + " ");
             traversePreOrder(root.left);
@@ -193,60 +247,7 @@ public class AVLTree {
         }
     }
 
-    public void load(String file){
-        try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
-            String line;
-            while ((line=br.readLine()) != null){
-                insert(line);
-            }
-        } catch (Exception e) {
-            System.out.println("Can not read the file");
-            System.out.println(e.getMessage());
-        }
-    }
-    public void lookUp(String file){
-        try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
-            String line;
-            int c=0;
-            while ((line=br.readLine()) != null){
-                if(search(line)=="YES"){
-                    c++;
-                    System.out.println("YES ----> " + line.toLowerCase());
-                }else{
-                    System.out.println("NO, Word Not Found!!");
-                }
 
-            }
-            System.out.println(c+" Words Found!!");
-        } catch (Exception e) {
-            System.out.println("Can not read the file");
-            System.out.println(e.getMessage());
-        }
-    }
-    public void batchDelete(String file){
-        try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
-            String line;
-            while ((line=br.readLine()) != null){
-                delete(line);
-
-            }
-        } catch (Exception e) {
-            System.out.println("Can not read the file");
-            System.out.println(e.getMessage());
-        }
-    }
-   /*  10  root
-           20 new root
-        15      30
-    * rightheavy -> leftrotation
-    * newroot=root.right
-    *root.right=new root.left //for 15 as smaller than 20 greater than 10
-    newroot.left=root
-
-           20
-       10       30
-          15
-    */
 
 
 }

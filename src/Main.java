@@ -2,13 +2,14 @@ public class Main {
     public static void main (String[] args ){
         AVLTree tree =new  AVLTree();
         tree.load("/src/dictionary.txt");
-        //tree.delete("gras");
+        tree.height();
+        tree.search("and");
+        tree.search("zebra");
         tree.batchDelete("/src/deletions.txt");
         tree.traversePreOrder();
         tree.lookUp("/src/queries.txt");
-
-        System.out.println(tree.height());
-
+        tree.delete("and");
+        tree.height();
 
 
 
