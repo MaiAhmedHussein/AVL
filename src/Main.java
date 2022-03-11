@@ -5,7 +5,7 @@ public class Main {
         tree.insert( "grass");
         tree.insert( "Greez");
         tree.insert( "Hand");
-        //tree.insert( "zebra");
+        tree.insert( "zebra");
         tree.insert( "greEN");
         tree.insert( "Grass");
 
