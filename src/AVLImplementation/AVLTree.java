@@ -15,7 +15,7 @@ public class AVLTree {
             return "Node" + value;
         }
     }
-
+    private int size=0;
     private AvlNode root;
     public void insert(int value){
         root= insert(root, value);
@@ -32,6 +32,7 @@ public class AVLTree {
         //to get height of each node
         setHeight(root);
         //to check if balanced
+        size++;
         return balance(root);
     }
 
@@ -81,6 +82,7 @@ public class AVLTree {
         //to get height of each node
         setHeight(root);
         //to check if balanced
+        size--;
         return balance(root);
     }
     private AvlNode minNode(AvlNode root){
@@ -149,8 +151,13 @@ public class AVLTree {
     }
 
     //to print height of tree
-    public String height(){
-        return " height of tree = "+height(root);
+    public void height(){
+
+        System.out.print("\nThe AVL Tree's Height is "+ height(root));
+    }
+
+    public void size(){
+        System.out.print("\nThe Size of the Dictionary is "+size);
     }
     private int height(AvlNode root){
         return (root==null) ? -1 : root.height;
