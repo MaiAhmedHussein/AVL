@@ -121,7 +121,7 @@ public class AVLTree {
     }
 
     public void load(String file){
-        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
             String line;
             while ((line=br.readLine()) != null){
                 insert(line);
@@ -132,7 +132,7 @@ public class AVLTree {
         }
     }
     public void lookUp(String file){
-        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+        try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
             String line;
             while ((line=br.readLine()) != null){
                 if(search(line)==true){
