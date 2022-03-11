@@ -7,10 +7,7 @@ public class AVLTree {
         public AvlNode(String value){
             this.value=value;
         }
-        //to see value while debugging
-        @Override
-        public String toString(){
-            return "Node" + value;
+       
         }
 
     }
@@ -56,16 +53,7 @@ public class AVLTree {
         return root;
     }
 
-   /* private AvlNode rotateLeft(AvlNode root){
-        //right heavy
-        AvlNode newRoot =root.right;
-        root.right=newRoot.left;
-        newRoot.left=root;
-        //updating height of each node
-        setHeight(root);
-        setHeight(newRoot);
-        return newRoot;
-    }*/
+  
      private AvlNode rotateLeft(AvlNode root){
         //right heavy
         AvlNode newRoot =root.right;
