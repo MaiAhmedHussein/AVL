@@ -14,7 +14,7 @@ public class AVLTreeDic {
             this.value = value;
         }
     }
-    private int f,flag;
+    private int f,flag,size=0;
     private AvlNode root;
 
     ///////////////////////FILE READER/////////////////////////////////////////////////
@@ -70,6 +70,8 @@ public class AVLTreeDic {
         root= insert(root, value);
         if(flag==0){
             System.out.print("\nERROR: \""+value.toLowerCase()+"\" already in the dictionary!");
+        }else{
+            size++;
         }
     }
 
@@ -89,6 +91,7 @@ public class AVLTreeDic {
 
        return balance(root);
     }
+
     //////////////////////////////FOR Delete////////////////////////////
     
      public void delete(String value){
@@ -96,6 +99,8 @@ public class AVLTreeDic {
        root= delete(root, value);
        if(f==0){
            System.out.print("\nERROR!! \""+value+"\" not Found!!");
+       }else{
+           size--;
        }
     }
     private AvlNode delete(AvlNode root,String value){
@@ -213,6 +218,10 @@ public class AVLTreeDic {
     public void height(){
 
          System.out.print("\nThe AVL Tree's Height is "+ height(root));
+    }
+
+    public void size(){
+        System.out.print("\nThe Size of the Dictionary is "+size);
     }
 
     private int height(AvlNode root){
