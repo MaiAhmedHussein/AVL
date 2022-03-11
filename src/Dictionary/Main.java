@@ -1,6 +1,7 @@
+package Dictionary;
 public class Main {
     public static void main (String[] args ){
-        AVLTree tree =new  AVLTree();
+        AVLTreeDic tree =new  AVLTreeDic();
         tree.load("/src/dictionary.txt");
         tree.height();
         tree.search("and");

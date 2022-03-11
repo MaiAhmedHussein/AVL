@@ -1,7 +1,9 @@
+package Dictionary;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-public class AVLTree {
+public class AVLTreeDic {
     private class AvlNode {
         private int height;
         private String value;
