@@ -12,15 +12,21 @@ public class AVLTree {
             this.value = value;
         }
     }
-    private int f;
+    private int f,flag;
     private AvlNode root;
     public void insert(String value){
-      root= insert(root, value);
+        flag=0;
+        root= insert(root, value);
+        if(flag==0){
+            System.out.println("ERROR: \""+value.toLowerCase()+"\" already in the dictionary!");
+        }
     }
 
     private AvlNode insert(AvlNode root,String value){
-       if(root==null)
+       if(root==null) {
+           flag=1;
            return new AvlNode(value);
+       }
 
        if(value.compareToIgnoreCase(root.value)>0)
           root.right= insert(root.right,value);
@@ -201,14 +207,17 @@ public class AVLTree {
     public void lookUp(String file){
         try(BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + file))) {
             String line;
+            int c=0;
             while ((line=br.readLine()) != null){
                 if(search(line)=="YES"){
+                    c++;
                     System.out.println("YES ----> " + line.toLowerCase());
                 }else{
                     System.out.println("NO, Word Not Found!!");
                 }
 
             }
+            System.out.println(c+" Words Found!!");
         } catch (Exception e) {
             System.out.println("Can not read the file");
             System.out.println(e.getMessage());
