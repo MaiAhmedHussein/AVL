@@ -33,6 +33,17 @@ public class AVLTree {
        return balance(root);
     }
     
+     private AvlNode minNode(AvlNode root){
+        if(root==null)
+            throw new IllegalStateException();
+        AvlNode current=root;
+        //loop till the left most node to get the min value
+        while(current.left!=null)
+            current=current.left;
+        return current;
+    }
+
+    
 
     private AvlNode balance(AvlNode root){
         //leftheavy
