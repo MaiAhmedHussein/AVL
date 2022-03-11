@@ -1,15 +1,16 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 public class AVLTree {
-    private class AvlNode{
+    private class AvlNode {
         private int height;
         private String value;
         private AvlNode left;
         private AvlNode right;
-        public AvlNode(String value){
-            this.value=value;
-        }
-       
-       
 
+        public AvlNode(String value) {
+            this.value = value;
+        }
     }
 
     private AvlNode root;
@@ -118,6 +119,50 @@ public class AVLTree {
             traversePreOrder(root.right);
         }
     }
+
+    public void load(String file){
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line=br.readLine()) != null){
+                insert(line);
+            }
+        } catch (Exception e) {
+            System.out.println("Can not read the file");
+            System.out.println(e.getMessage());
+        }
+    }
+    public void lookUp(String file){
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line=br.readLine()) != null){
+                if(search(line)==true){
+                    System.out.println("YES ----> " + line.toLowerCase());
+                }else{
+                    System.out.println("NO, Word Not Found!!");
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println("Can not read the file");
+            System.out.println(e.getMessage());
+        }
+    }
+    /*public void BatchDelete(String file){
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line=br.readLine()) != null){
+                if(search(line)==true){
+                    System.out.println("YES ----> " + line.toLowerCase());
+                }else{
+                    System.out.println("NO, Word Not Found!!");
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println("Can not read the file");
+            System.out.println(e.getMessage());
+        }
+    }*/
    /*  10  root
            20 new root
         15      30
